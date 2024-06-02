@@ -1,5 +1,6 @@
 import { submitGetRequest } from '@/lib/backlogApiClient';
 import { typeDescription } from '@/utils/helper';
+import { format } from 'date-fns-tz';
 import Activity from './component/activity/Activity';
 
 export default async function Home() {
@@ -12,7 +13,7 @@ export default async function Home() {
     type: typeDescription(activity.type),
     contentSummary: activity.content.summary || '',
     createdUserName: activity.createdUser.name,
-    created: new Date(activity.created),
+    created: format(new Date(activity.created), 'yyyy/MM/dd HH:mm:ss'),
   }));
 
   return <Activity activityList={activityList} />

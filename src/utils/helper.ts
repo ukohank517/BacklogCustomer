@@ -1,5 +1,13 @@
+// sort activities by created date
 export const sortedActivities = (activities: ActivityData[]): ActivityData[] => {
-  return activities.sort((a:ActivityData, b:ActivityData) => a.created.valueOf() - b.created.valueOf());
+  const res = activities.sort((a:ActivityData, b:ActivityData) => {
+    if (a.created === b.created) {
+      return 0;
+    }
+    return a.created < b.created ? -1 : 1;
+  });
+
+  return res
 }
 
 export const typeDescription = (type: number): string => {

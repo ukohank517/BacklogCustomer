@@ -11,7 +11,6 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { format } from 'date-fns-tz';
 
 export type ActivityListTableProps = {
   title: string;
@@ -50,7 +49,7 @@ export const ActivityListTable: React.FC<ActivityListTableProps> = ({ title, dat
               <Td>{item.type}</Td>
               <Td>{item.contentSummary}</Td>
               <Td>{item.createdUserName}</Td>
-              <Td>{format(new Date(item.created), 'yyyy/MM/dd HH:mm:ss')}</Td>
+              <Td>{item.created}</Td>
             </Tr>
           ))}
         </Tbody>

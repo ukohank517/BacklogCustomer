@@ -4,5 +4,5 @@ interface ActivityData {
   type: string;
   contentSummary: string;
   createdUserName: string;
-  created: Date;
+  created: string;
 }
