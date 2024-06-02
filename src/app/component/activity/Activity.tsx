@@ -21,7 +21,7 @@ export default function Activity({activityList}: {activityList: ActivityData[]})
       const initialSearchData = activityList.filter(activity =>
         !initialFavoriteData.some((fav: ActivityData) => fav.id === activity.id)
       );
-      setSearchData(initialSearchData);
+      setSearchData(sortedActivities(initialSearchData));
     }else{
       alert('localStorageが使えません。環境設定を確認してください。');
     }
