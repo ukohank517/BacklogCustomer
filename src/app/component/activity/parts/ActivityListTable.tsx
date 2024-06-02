@@ -11,6 +11,7 @@ import {
   Box,
   Heading,
 } from '@chakra-ui/react';
+import { format } from 'date-fns-tz';
 
 export type ActivityListTableProps = {
   title: string;
@@ -26,6 +27,7 @@ export const ActivityListTable: React.FC<ActivityListTableProps> = ({ title, dat
       <Table variant="simple">
         <Thead>
           <Tr>
+            <Th>fav</Th>
             <Th>id</Th>
             <Th>project.name</Th>
             <Th>type</Th>
@@ -43,11 +45,12 @@ export const ActivityListTable: React.FC<ActivityListTableProps> = ({ title, dat
                   onChange={(e) => onCheckboxChange(item, e.target.checked)}
                 />
               </Td>
+              <Td>{item.id}</Td>
               <Td>{item.projectName}</Td>
               <Td>{item.type}</Td>
               <Td>{item.contentSummary}</Td>
               <Td>{item.createdUserName}</Td>
-              <Td>{item.created}</Td>
+              <Td>{format(new Date(item.created), 'yyyy/MM/dd HH:mm:ss')}</Td>
             </Tr>
           ))}
         </Tbody>
