@@ -1,19 +1,20 @@
 'use client';
-import { Box, Input } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
-import { ActivityListTable } from './parts/ActivityListTable';
 import { sortedActivities } from '@/utils/helper';
+import { Box, Input } from '@chakra-ui/react';
+import { useEffect, useRef, useState } from 'react';
+import { ActivityListTable } from './parts/ActivityListTable';
 
 export default function Activity({activityList}: {activityList: ActivityData[]}) {
   const [isLocalStorageInitialized, setIsLocalStorageInitialized] = useState<boolean>(false);
   const [searchData, setSearchData] = useState<ActivityData[]>([]);
   const [favoriteData, setFavoriteData] = useState<ActivityData[]>([]);
   const [searchKeyword, setSearchKeyword] = useState<string>('');
+  const searchKeywordRef = useRef<HTMLInputElement>(null);
 
   // initialize favoriteData from localStorage
   useEffect(() => {
     if (isLocalStorageAvailable()) {
-      const initialFavoriteData = JSON.parse(localStorage.getItem('favorites')||'[]');
+      const initialFavoriteData: ActivityData[]  = JSON.parse(localStorage.getItem('favorites')||'[]');
       setFavoriteData(initialFavoriteData);
 
       // remove favoriteData from activities
@@ -65,6 +66,11 @@ export default function Activity({activityList}: {activityList: ActivityData[]})
       );
 
       setSearchData(sortedActivities(updatedSearchData));
+
+      // remove focus from searchKeywordRef
+      if (searchKeywordRef.current) {
+        searchKeywordRef.current.blur();
+      }
     }
   };
 
@@ -72,6 +78,7 @@ export default function Activity({activityList}: {activityList: ActivityData[]})
     <>
       <Box mb={4}>
         <Input
+          ref={searchKeywordRef}
           placeholder="検索キーワード入力"
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}

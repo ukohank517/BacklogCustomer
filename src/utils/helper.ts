@@ -1,5 +1,5 @@
 export const sortedActivities = (activities: ActivityData[]): ActivityData[] => {
-  return activities.sort((a, b) => a.created.getTime() - b.created.getTime());
+  return activities.sort((a:ActivityData, b:ActivityData) => a.created.valueOf() - b.created.valueOf());
 }
 
 export const typeDescription = (type: number): string => {

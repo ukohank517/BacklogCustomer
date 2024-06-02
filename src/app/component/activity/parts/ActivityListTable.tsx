@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  Checkbox,
   Box,
+  Checkbox,
   Heading,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from '@chakra-ui/react';
 import { format } from 'date-fns-tz';
 

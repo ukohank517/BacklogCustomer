@@ -1,7 +1,6 @@
 import { submitGetRequest } from '@/lib/backlogApiClient';
-import Activity from './component/activity/Activity';
 import { typeDescription } from '@/utils/helper';
-
+import Activity from './component/activity/Activity';
 
 export default async function Home() {
 
